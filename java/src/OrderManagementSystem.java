@@ -1,3 +1,5 @@
+import enums.DiscountedPriceCalculator;
+
 public class OrderManagementSystem {
     public static void main(String[] args) {
         Customer customer = new Customer("John Doe", "VIP");
@@ -7,6 +9,12 @@ public class OrderManagementSystem {
         order.addItem("Mouse", 50);
         order.addItem("Keyboard", 80);
 
+        TotalPriceCalculator totalPriceCalculator = new TotalPriceCalculator(order.getPrices());
+        order.setTotalPrice(totalPriceCalculator.calculateTotal());
+        DiscountedPriceCalculator discountedPriceCalculator = new DiscountedPriceCalculator(order.getTotalPrice());
+        order.setDiscountedPrice(
+                discountedPriceCalculator.applyDiscountAndGetFinalAmount(customer.getDiscount())
+        );
         order.printOrder();
 
         generateInvoice(order);

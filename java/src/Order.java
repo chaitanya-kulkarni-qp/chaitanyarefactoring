@@ -35,22 +35,17 @@ public class Order {
         return discountedPrice;
     }
 
+    public void setDiscountedPrice(double discountedPrice) {
+        this.discountedPrice = discountedPrice;
+    }
+
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
     public void addItem(String item, double price) {
         items.add(item);
         prices.add(price);
-        calculateTotal();
-    }
-
-    public void calculateTotal() {
-        totalPrice = 0;
-        for (double price : prices) {
-            totalPrice += price;
-        }
-        applyDiscount();
-    }
-
-    public void applyDiscount() {
-        discountedPrice = totalPrice - (totalPrice * customer.getDiscount());
     }
 
     public void printOrder() {
