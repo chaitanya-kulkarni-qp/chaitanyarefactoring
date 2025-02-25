@@ -13,7 +13,9 @@ public class OrderManagementSystem {
         order.setTotalPrice(totalPriceCalculator.calculateTotal());
         DiscountedPriceCalculator discountedPriceCalculator = new DiscountedPriceCalculator(order.getTotalPrice());
         order.setDiscountedPrice(
-                discountedPriceCalculator.applyDiscountAndGetFinalAmount(customer.getDiscount())
+                discountedPriceCalculator.applyDiscountAndGetFinalAmount(
+                        CustomerTypeDiscount.getDiscount(customer.getType())
+                )
         );
         order.printOrder();
 
